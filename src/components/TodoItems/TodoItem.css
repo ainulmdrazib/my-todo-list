@@ -1,0 +1,9 @@
+.todo-item-box {
+    display: flex;
+    align-items: left;
+    padding-bottom: 24px;
+}
+
+.todo-title-box {
+    padding-left: 8px; 
+}

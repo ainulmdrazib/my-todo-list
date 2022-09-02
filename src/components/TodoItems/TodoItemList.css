@@ -1,12 +1,3 @@
 .todo-list-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    float:left;
-    width: 50%;
-}
-
-.completed-box {
-    float: left;
-
-}
+    width:50%;
+  }

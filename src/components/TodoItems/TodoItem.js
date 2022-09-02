@@ -1,3 +1,5 @@
+import './TodoItem.css'
+
 function TodoItem(props){
   return (
     <div className="todo-item-box">
