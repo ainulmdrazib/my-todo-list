@@ -2,7 +2,7 @@
 
 # IDEA-specific
 .idea
-backend/out
+!out
 
 ## FRONT END ##
 # dependencies
