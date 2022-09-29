@@ -26,5 +26,12 @@ describe('TodoItemList', () => {
         
         expect(wrapper.find(TodoItem).length).toBe(3);
         });
+
+    it('renders an empty list', () => {
+        const wrapper = shallow(<TodoItemList todo_items_data={[]} />);
+        
+        expect(wrapper.find(TodoItem).length).toBe(0);
+        expect(wrapper.text().includes('No more tasks')).toBe(true);
+        });
 })
 
