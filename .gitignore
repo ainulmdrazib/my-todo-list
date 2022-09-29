@@ -3,6 +3,7 @@
 # IDEA-specific
 .idea
 !out
+!bin
 
 ## FRONT END ##
 # dependencies
