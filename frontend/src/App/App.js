@@ -1,3 +1,4 @@
+import TodoItemList from '../components/TodoItems/TodoItemList';
 import logo from '../todoitems_logo.png';
 import './App.css';
 
@@ -10,6 +11,7 @@ function App() {
           Welcome back!
         </p>
       </header>
+        <TodoItemList />
     </div>
   );
 }
