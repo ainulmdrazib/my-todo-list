@@ -18,7 +18,7 @@ public class TodoItemDetails {
     private Integer id;
 
     private String title;
-    private Boolean completed;
+    private Boolean completed = false;
 
     @Column(name = "username")
     private String username;
