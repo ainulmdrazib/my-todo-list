@@ -45,7 +45,7 @@ public class TodoItemService {
     public String deleteTodo(Integer todoDeleteId) {
         todoItemRepository.deleteById(todoDeleteId);
 
-        return todoDeleteId + "is deleted.";
+        return todoDeleteId + " is deleted.";
 
     }
 }

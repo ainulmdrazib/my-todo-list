@@ -84,11 +84,10 @@ public class TodoItemServiceTest {
         TodoItemDetails todoDelete = new TodoItemDetails();
         todoDelete.setId(123);
 
-        when(testTodoItemRepository.findById(any(Integer.class))).thenReturn(Optional.of(todoDelete));
-        testTodoItemService.deleteTodo(todoDelete.getId());
+        String message = testTodoItemService.deleteTodo(todoDelete.getId());
 
         Mockito.verify(testTodoItemRepository).deleteById(todoDelete.getId());
+        assertEquals("123 is deleted.", message);
     }
-
 
 }
