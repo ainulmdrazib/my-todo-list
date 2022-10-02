@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -42,6 +44,20 @@ public class TodoItemServiceTest {
         TodoItemDetails createdTodo = testTodoItemService.createTodo("");
 
         assertNull(createdTodo);
+    }
+
+    @Test
+    public void shouldReturnAllTodos() {
+
+        List<TodoItemDetails> testTodoItems = Arrays.asList(new TodoItemDetails(),
+                                                            new TodoItemDetails(),
+                                                            new TodoItemDetails());
+        when(testTodoItemRepository.findAll()).thenReturn(testTodoItems);
+
+        List<TodoItemDetails> testTodoList = testTodoItemService.getTodos();
+
+        assertNotNull(testTodoList);
+        assertEquals(testTodoItems.size(), testTodoList.size());
     }
     @Test
     public void shouldToggleTodoGivenValidId() {

@@ -3,10 +3,15 @@ package com.ainulmdrazibtw.todobackend.service;
 import com.ainulmdrazibtw.todobackend.entity.TodoItemDetails;
 import com.ainulmdrazibtw.todobackend.entity.UserDetails;
 import com.ainulmdrazibtw.todobackend.repository.TodoItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TodoItemService {
+    @Autowired
     private TodoItemRepository todoItemRepository;
 
     public TodoItemDetails createTodo(String title){
@@ -19,6 +24,9 @@ public class TodoItemService {
         } else {
             return null;
         }
+    }
+    public List<TodoItemDetails> getTodos(){
+        return todoItemRepository.findAll();
     }
 
     public TodoItemDetails toggleTodo(Integer todoToggleId) {
@@ -34,7 +42,10 @@ public class TodoItemService {
         }
     }
 
-    public void deleteTodo(Integer todoDeleteId) {
+    public String deleteTodo(Integer todoDeleteId) {
         todoItemRepository.deleteById(todoDeleteId);
+
+        return todoDeleteId + "is deleted.";
+
     }
 }
