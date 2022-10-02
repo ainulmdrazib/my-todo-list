@@ -26,12 +26,14 @@ public class TodoItemServiceTest {
     @InjectMocks
     TodoItemService testTodoItemService;
 
+    private String testTodoItemId = "111";
+
     @Test
     public void shouldCreateTodoGivenValidTitle() {
         TodoItemDetails testTodoItem = new TodoItemDetails();
         testTodoItem.setTitle("todo 1");
 
-        when(testTodoItemRepository.saveAndFlush(any(TodoItemDetails.class))).thenReturn(testTodoItem);
+        when(testTodoItemRepository.save(any(TodoItemDetails.class))).thenReturn(testTodoItem);
 
         TodoItemDetails createdTodo = testTodoItemService.createTodo("todo 1");
 
@@ -63,10 +65,10 @@ public class TodoItemServiceTest {
     public void shouldToggleTodoGivenValidId() {
 
         TodoItemDetails todoToggle = new TodoItemDetails();
-        todoToggle.setId(123);
+        todoToggle.setId(testTodoItemId);
 
-        when(testTodoItemRepository.findById(any(Integer.class))).thenReturn(Optional.of(todoToggle));
-        when(testTodoItemRepository.saveAndFlush(any(TodoItemDetails.class))).thenReturn(todoToggle);
+        when(testTodoItemRepository.findById(any(String.class))).thenReturn(Optional.of(todoToggle));
+        when(testTodoItemRepository.save(any(TodoItemDetails.class))).thenReturn(todoToggle);
 
         TodoItemDetails toggledTodo = testTodoItemService.toggleTodo(todoToggle.getId());
         assertEquals(true, toggledTodo.getCompleted());
@@ -76,18 +78,19 @@ public class TodoItemServiceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldReturnErrorGivenNonexistentId() {
-        TodoItemDetails toggledTodo = testTodoItemService.toggleTodo(123);
+        TodoItemDetails toggledTodo = testTodoItemService.toggleTodo(testTodoItemId);
     }
 
     @Test
     public void shouldDeleteTodoGivenValidId() {
         TodoItemDetails todoDelete = new TodoItemDetails();
-        todoDelete.setId(123);
+        todoDelete.setId(testTodoItemId);
 
+        when(testTodoItemRepository.findById(any(String.class))).thenReturn(Optional.of(todoDelete));
         String message = testTodoItemService.deleteTodo(todoDelete.getId());
 
         Mockito.verify(testTodoItemRepository).deleteById(todoDelete.getId());
-        assertEquals("123 is deleted.", message);
+        assertEquals(testTodoItemId + " is deleted.", message);
     }
 
 }

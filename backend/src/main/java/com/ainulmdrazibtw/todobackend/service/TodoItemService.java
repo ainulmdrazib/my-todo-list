@@ -1,13 +1,11 @@
 package com.ainulmdrazibtw.todobackend.service;
 
 import com.ainulmdrazibtw.todobackend.entity.TodoItemDetails;
-import com.ainulmdrazibtw.todobackend.entity.UserDetails;
 import com.ainulmdrazibtw.todobackend.repository.TodoItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TodoItemService {
@@ -20,7 +18,7 @@ public class TodoItemService {
             TodoItemDetails todoCreate = new TodoItemDetails();
             todoCreate.setTitle(title);
 
-            return todoItemRepository.saveAndFlush(todoCreate);
+            return todoItemRepository.save(todoCreate);
         } else {
             return null;
         }
@@ -29,12 +27,12 @@ public class TodoItemService {
         return todoItemRepository.findAll();
     }
 
-    public TodoItemDetails toggleTodo(Integer todoToggleId) {
+    public TodoItemDetails toggleTodo(String todoToggleId) {
 
         TodoItemDetails todoToggle = todoItemRepository.findById(todoToggleId).orElse(null);
         if (todoToggle != null) {
             todoToggle.setCompleted(!todoToggle.getCompleted());
-            return todoItemRepository.saveAndFlush(todoToggle);
+            return todoItemRepository.save(todoToggle);
 
         } else {
             throw new IllegalArgumentException("Todo item does not exist");
@@ -42,10 +40,15 @@ public class TodoItemService {
         }
     }
 
-    public String deleteTodo(Integer todoDeleteId) {
-        todoItemRepository.deleteById(todoDeleteId);
+    public String deleteTodo(String todoDeleteId) {
+        TodoItemDetails todoDelete = todoItemRepository.findById(todoDeleteId).orElse(null);
 
-        return todoDeleteId + " is deleted.";
+        if (todoDelete != null){
+            todoItemRepository.deleteById(todoDeleteId);
+            return todoDeleteId + " is deleted.";
+        } else {
+            return null;
+        }
 
     }
 }

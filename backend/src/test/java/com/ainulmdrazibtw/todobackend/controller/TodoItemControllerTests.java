@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TodoItemController.class)
+@AutoConfigureDataMongo
 public class TodoItemControllerTests {
 
     @MockBean
@@ -38,11 +40,13 @@ public class TodoItemControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
+    private String testTodoItemId = "111";
+
     @Test
     public void shouldCreateTodoGivenValidDetails() throws Exception {
         TodoItemDetails todoItemDetailsCreate = new TodoItemDetails();
 
-        todoItemDetailsCreate.setId(111);
+        todoItemDetailsCreate.setId(testTodoItemId);
         todoItemDetailsCreate.setTitle("todo item");
         todoItemDetailsCreate.setUsername("someuser");
 
@@ -58,13 +62,13 @@ public class TodoItemControllerTests {
     public void shouldToggleTodoGivenValidDetails() throws Exception {
         TodoItemDetails todoItemDetailsBeforeToggle = new TodoItemDetails();
 
-        todoItemDetailsBeforeToggle.setId(111);
+        todoItemDetailsBeforeToggle.setId(testTodoItemId);
 
         TodoItemDetails todoItemDetailsAfterToggle = new TodoItemDetails();
         todoItemDetailsAfterToggle.setCompleted(true);
-        todoItemDetailsBeforeToggle.setId(111);
+        todoItemDetailsBeforeToggle.setId(testTodoItemId);
 
-        when(testTodoItemService.toggleTodo(any(Integer.class))).thenReturn(todoItemDetailsAfterToggle);
+        when(testTodoItemService.toggleTodo(any(String.class))).thenReturn(todoItemDetailsAfterToggle);
 
         mockMvc.perform(post("/toggleTodo")
                         .content(mapper.writeValueAsString(todoItemDetailsBeforeToggle))
@@ -76,12 +80,27 @@ public class TodoItemControllerTests {
     public void shouldDeleteTodoGivenValidDetails() throws Exception {
         TodoItemDetails todoItemDetailsDelete = new TodoItemDetails();
 
-        todoItemDetailsDelete.setId(111);
+        todoItemDetailsDelete.setId(testTodoItemId);
+
+        when(testTodoItemService.deleteTodo(any(String.class))).thenReturn(todoItemDetailsDelete.getId() + " is deleted");
 
         mockMvc.perform(post("/deleteTodo")
                         .content(mapper.writeValueAsString(todoItemDetailsDelete))
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().is2xxSuccessful());
+    }
+    @Test
+    public void shouldReturn500ErrorGivenInvalidId() throws Exception {
+        TodoItemDetails todoItemDetailsDelete = new TodoItemDetails();
+
+        todoItemDetailsDelete.setId(testTodoItemId);
+
+        when(testTodoItemService.deleteTodo(any(String.class))).thenReturn(null);
+
+        mockMvc.perform(post("/deleteTodo")
+                        .content(mapper.writeValueAsString(todoItemDetailsDelete))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is5xxServerError());
     }
     @Test
     public void shouldRetrieveAllTodos() throws Exception {
