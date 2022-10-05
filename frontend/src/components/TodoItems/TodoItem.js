@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './TodoItem.css'
 
-
 function TodoItem(props){
 
   const [isChecked, setIsChecked] = useState(props.todo_data.completed);  
@@ -12,7 +11,7 @@ function TodoItem(props){
     props.toggleTodo(props.todo_data.id, isChecked)
 
   }
-  
+
   return (
     <div className="todo-item-box">
         <div className="completed-box">

@@ -12,7 +12,6 @@ function TodoForm(props){
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    
     if (todoTitle !== ""){
       setTitleError(false);
       props.createTodo(todoTitle);
