@@ -4,6 +4,10 @@
     padding-bottom: 24px;
 }
 
+.todo-checked {
+    transform: scale(1.5);
+}
+
 .todo-title-box {
     padding-left: 8px; 
 }
