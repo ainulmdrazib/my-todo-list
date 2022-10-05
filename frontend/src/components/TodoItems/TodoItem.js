@@ -4,11 +4,11 @@ function TodoItem(props){
   return (
     <div className="todo-item-box">
         <div className="completed-box">
-            <input id="todo-checked" type="checkbox" defaultChecked={false} />
+            <input className="todo-checked" type="checkbox" checked={props.todo_data.completed} />
         </div>
         <div className="todo-title-box">{props.todo_data.title}</div>
     </div>
-  );
+  ); 
 }
 
 export default TodoItem;

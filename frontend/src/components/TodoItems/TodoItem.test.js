@@ -1,13 +1,16 @@
-import { render, screen } from '@testing-library/react';
 import TodoItem from './TodoItem';
+import TodoMaps from '../../constants/maps';
 
-const todo_item_data = {
-    "completed": false,
-    "title": "Todo Item 1"
-}
+import {shallow} from 'enzyme';
 
-test('renders item', () => {
-  render(<TodoItem todo_data={todo_item_data} />);
-  const todo_title = screen.getByText(/todo item 1/i);
-  expect(todo_title).toBeInTheDocument();
-});
+describe('TodoItem', () => {
+
+  const todo_item_data = TodoMaps.SINGLE_TODO;
+
+  it('renders title and checkbox', () => {
+      const wrapper = shallow(<TodoItem todo_data={todo_item_data} />);
+      
+      expect(wrapper.text()).toContain(todo_item_data.title);
+      expect(wrapper.find("#todo-checked").length).toBe(1);
+  });
+})
