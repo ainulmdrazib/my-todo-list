@@ -3,15 +3,14 @@ import { mount } from 'enzyme';
 
 import TodoForm from './TodoForm';
 import TodoStrings from "../../constants/strings"
+import TodoMaps from "../../constants/maps"
 
 
 describe('TodoForm', () => {
 
-    const testPropErrors = {
-        "titleIsEmpty":""
-    }
+    const testPropErrors =  TodoMaps.testErrors;
 
-    const mockCreateTodo = jest.fn()
+    const mockCreateTodo = jest.fn();
 
     it('renders form components', () => {
         const wrapper = mount(<TodoForm  errors={testPropErrors}/>);
@@ -32,8 +31,7 @@ describe('TodoForm', () => {
 
         createButton.simulate("submit");
 
-        // expect(mockCreateTodo).toBeCalledTimes(1);
-        expect(titleError.text()).toBe("");
+        expect(mockCreateTodo).toBeCalledTimes(1);
 
     });
 

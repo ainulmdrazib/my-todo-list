@@ -19,8 +19,7 @@ function TodoForm(props){
         "completed": false
       }
       setTitleError(false);
-      console.log("Tdoo created with title " + todoDetails.title)
-      // props.createTodo(todoTitle);
+      props.createTodo(todoDetails);
       setTodoTitle("")
     } else {
       setTitleError(true);
@@ -38,7 +37,7 @@ function TodoForm(props){
 
             <button className="createButton" type="submit">{TodoStrings.FORM_BUTTON}</button>
             <span className="title-error"><em>{titleError ? TodoStrings.ERROR_TITLE_IS_EMPTY : ""}</em></span>
-</form>
+        </form>
     </div>
   );
 }

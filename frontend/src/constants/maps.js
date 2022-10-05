@@ -20,6 +20,10 @@ class TodoMaps {
         "title": "Todo Item 1",
         "id":"23456fghj4567dertyujk"
     }
+
+    static testErrors = {
+        "titleIsEmpty":""
+    }
 }
 
 export default TodoMaps;
