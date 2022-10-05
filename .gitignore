@@ -2,8 +2,6 @@
 
 # IDEA-specific
 .idea
-!out
-!bin
 
 ## FRONT END ##
 # dependencies
@@ -22,6 +20,8 @@ frontend/build
 backend/.gradle
 **/build/
 !src/**/build/
+backend/out
+backend/bin
 
 # Avoid ignoring Gradle wrapper jar & properties file (.jar files are usually ignored)
 backend/gradle/wrapper
