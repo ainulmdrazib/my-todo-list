@@ -13,8 +13,15 @@ function TodoForm(props){
     event.preventDefault();
 
     if (todoTitle !== ""){
+      const todoDetails = {
+        "username":props.username,
+        "title": todoTitle,
+        "completed": false
+      }
       setTitleError(false);
-      props.createTodo(todoTitle);
+      console.log("Tdoo created with title " + todoDetails.title)
+      // props.createTodo(todoTitle);
+      setTodoTitle("")
     } else {
       setTitleError(true);
     }

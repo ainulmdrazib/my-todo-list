@@ -2,21 +2,3 @@
   padding-left: 20%;
   padding-right: 20%;
 }
-
-.App-logo {
-  height: 16vw;
-  width: 16vw;
-
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.App-header {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: black;
-}

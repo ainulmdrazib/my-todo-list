@@ -2,8 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import App from './App';
-import TodoItemList from '../components/TodoItems/TodoItemList';
-import TodoForm from '../components/TodoForm/TodoForm';
+import TodoDisplay from '../components/TodoDisplay/TodoDisplay';
 
 
 // test('renders learn react link', () => {
@@ -16,8 +15,6 @@ describe('App', () => {
   it('should render components', () => {
     const wrapper = shallow(<App />);
   
-    expect(wrapper.text()).toBeTruthy();
-    expect(wrapper.find(TodoItemList)).toBeTruthy();
-    expect(wrapper.find(TodoForm)).toBeTruthy();
+    expect(wrapper.find(TodoDisplay)).toBeTruthy();
   });
 });
