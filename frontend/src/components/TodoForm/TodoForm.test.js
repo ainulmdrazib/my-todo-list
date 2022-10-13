@@ -25,7 +25,7 @@ describe('TodoForm', () => {
     it('submits title', () => {
         const wrapper = mount(<TodoForm 
             curr_todos={testTodos}
-            create_todo={mockCreateTodo} />);
+            update_todos={mockCreateTodo} />);
 
         const createButton = wrapper.find('.createButton');
         const titleField = wrapper.find('.title-field');
@@ -40,7 +40,7 @@ describe('TodoForm', () => {
     });
 
     it('rejects empty title and displays error message', () => {
-        const wrapper = mount(<TodoForm createTodo={mockCreateTodo}/>);
+        const wrapper = mount(<TodoForm update_todos={mockCreateTodo}/>);
 
         const createButton = wrapper.find('.createButton');
         const titleError = wrapper.find('.title-error');

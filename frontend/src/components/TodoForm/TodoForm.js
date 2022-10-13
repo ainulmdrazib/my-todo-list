@@ -3,13 +3,15 @@ import './TodoForm.css'
 import { useState } from "react";
 
 import TodoStrings from "../../constants/strings"
+import TodoApiHelper from '../api/TodoApiHelper';
+
 
 function TodoForm(props){
 
   const [todoTitle, setTodoTitle] = useState("");
   const [titleError, setTitleError] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (todoTitle !== ""){
@@ -18,8 +20,10 @@ function TodoForm(props){
         "title": todoTitle,
         "completed": false
       }
+
       setTitleError(false);
-      props.create_todo([...props.curr_todos, todoDetails]);
+      const createdTodo = await TodoApiHelper.createTodo(todoDetails)
+      props.update_todos([...props.curr_todos, createdTodo]);
       setTodoTitle("")
     } else {
       setTitleError(true);
