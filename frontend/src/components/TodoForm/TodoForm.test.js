@@ -9,11 +9,13 @@ import TodoMaps from "../../constants/maps"
 describe('TodoForm', () => {
 
     const testPropErrors =  TodoMaps.testErrors;
+    const testTodos = TodoMaps.MULTIPLE_TODOS;
 
     const mockCreateTodo = jest.fn();
 
     it('renders form components', () => {
-        const wrapper = mount(<TodoForm  errors={testPropErrors}/>);
+        const wrapper = mount(<TodoForm
+            errors={testPropErrors}/>);
 
         expect(wrapper.find('.createButton').length).toBe(1);
         expect(wrapper.find('.title-field').length).toBe(1);
@@ -21,7 +23,9 @@ describe('TodoForm', () => {
     })
 
     it('submits title', () => {
-        const wrapper = mount(<TodoForm createTodo={mockCreateTodo} />);
+        const wrapper = mount(<TodoForm 
+            curr_todos={testTodos}
+            create_todo={mockCreateTodo} />);
 
         const createButton = wrapper.find('.createButton');
         const titleField = wrapper.find('.title-field');

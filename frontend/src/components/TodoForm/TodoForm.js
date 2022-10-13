@@ -19,7 +19,7 @@ function TodoForm(props){
         "completed": false
       }
       setTitleError(false);
-      props.createTodo(todoDetails);
+      props.create_todo([...props.curr_todos, todoDetails]);
       setTodoTitle("")
     } else {
       setTitleError(true);
