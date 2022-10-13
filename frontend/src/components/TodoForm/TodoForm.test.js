@@ -11,8 +11,6 @@ describe('TodoForm', () => {
     const testPropErrors =  TodoMaps.testErrors;
     const testTodos = TodoMaps.MULTIPLE_TODOS;
 
-    const mockCreateTodo = jest.fn();
-
     it('renders form components', () => {
         const wrapper = mount(<TodoForm
             errors={testPropErrors}/>);
@@ -24,8 +22,7 @@ describe('TodoForm', () => {
 
     it('submits title', () => {
         const wrapper = mount(<TodoForm 
-            curr_todos={testTodos}
-            update_todos={mockCreateTodo} />);
+            curr_todos={testTodos}/>);
 
         const createButton = wrapper.find('.createButton');
         const titleField = wrapper.find('.title-field');
@@ -35,12 +32,12 @@ describe('TodoForm', () => {
 
         createButton.simulate("submit");
 
-        expect(mockCreateTodo).toBeCalledTimes(1);
+        expect(titleField.text()).toBe("");
 
     });
 
     it('rejects empty title and displays error message', () => {
-        const wrapper = mount(<TodoForm update_todos={mockCreateTodo}/>);
+        const wrapper = mount(<TodoForm/>);
 
         const createButton = wrapper.find('.createButton');
         const titleError = wrapper.find('.title-error');

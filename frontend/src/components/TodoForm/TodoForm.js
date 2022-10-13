@@ -24,6 +24,7 @@ function TodoForm(props){
       setTitleError(false);
       const createdTodo = await TodoApiHelper.createTodo(todoDetails)
       props.update_todos([...props.curr_todos, createdTodo]);
+      
       setTodoTitle("")
     } else {
       setTitleError(true);
