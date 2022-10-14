@@ -1,4 +1,4 @@
-const { openBrowser, closeBrowser, text, textBox, goto, into, write, press, checkBox, clear } = require('taiko');
+const { openBrowser, button,  closeBrowser, waitFor, toRightOf, click, text, textBox, goto, into, write, press, checkBox, clear, toLeftOf } = require('taiko');
 const assert = require("assert");
 'use strict';
 
@@ -26,9 +26,18 @@ step("Click <button_title> button", async (button_title) => {
     // await click(button_title, { navigationTimeout: 1000 });
     await press("Enter")
     await clear(textBox({class:"title-field"}));
-    
 });
 
 step("Verify <todo_title> exists", async (todo_title) => {
     assert.ok(await text(todo_title).exists())
 })
+step("Toggle checkbox for <todo_title>", async (todo_title) => {
+    assert.ok(!await checkBox(toLeftOf(todo_title)).isChecked())
+    await click(checkBox(toLeftOf(todo_title)))
+    assert.ok(await checkBox(toLeftOf(todo_title)).isChecked())
+    await click(checkBox(toLeftOf(todo_title)),)
+    assert.ok(!await checkBox(toLeftOf(todo_title)).isChecked())
+
+})
+
+
