@@ -10,4 +10,14 @@
 
 .todo-title-box {
     padding-left: 8px; 
+    width: 75%;
+}
+
+.todo-delete-button{
+    border: none;
+    background-color: transparent;
+}
+
+.todo-delete-container {
+    float:right;
 }

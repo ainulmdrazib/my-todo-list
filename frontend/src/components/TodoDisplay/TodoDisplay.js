@@ -17,20 +17,29 @@ function TodoDisplay() {
 
   const username = TodoStrings.DEFAULT_USERNAME;
 
-  useEffect(() => {
-    const getAllTodos = async() => {
-      const allTodos = await TodoApiHelper.getAllTodos();
-      if (allTodos) {
+  const getAllTodos = async() => {
+    const allTodos = await TodoApiHelper.getAllTodos();
+    if (allTodos) {
       setTodoItems(allTodos)
 
-      } else {
-        console.log("Unable to get todos.")
-      }
+    } else {
+      console.log("Unable to get todos.")
     }
+  }
 
+  const deleteTodo = async(todoDetails) => {
+    // GET DETAILS FROM ITEM, CALL API, UPDATE TODO LIST
+
+    const deletedTodoMsg = await TodoApiHelper.deleteTodo(todoDetails)
+    console.log(deletedTodoMsg)
+    getAllTodos();
+  }
+
+
+  useEffect(() => {
     getAllTodos();
   }, [])
-
+  
   return (
     <div className="todo-display">
       <header className="todo-header">
@@ -44,7 +53,7 @@ function TodoDisplay() {
                 update_todos={setTodoItems}
                 curr_todos={todoItems}/>
 
-      <TodoItemList todo_items_data={todoItems}/>
+      <TodoItemList todo_items_data={todoItems} delete_todo={deleteTodo}/>
     </div>
   );
 }
