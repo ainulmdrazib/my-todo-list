@@ -41,3 +41,8 @@ step("Toggle checkbox for <todo_title>", async (todo_title) => {
 })
 
 
+step("Delete <todo_title>", async (todo_title) => {
+    await click(button({class:"todo-delete-button"}, toRightOf(todo_title)));
+})
+
+
