@@ -1,0 +1,29 @@
+.todo-form {
+    font-size: calc(10px + 2vmin);;
+}
+
+.title-field{
+    font-size: 2vmin;
+    margin-right: 8px;
+    padding: 4px;
+    width:50%
+}
+
+.createButton {
+    font-size: 2vmin;
+    padding: 8px;
+    border-radius: 4px ;
+    border: 0px;
+    background-color: #EB667E;
+    color:white;
+}
+
+.title-label {
+    display:block;
+}
+
+.title-error {
+    font-size: 2vmin;
+    display:block;
+    color:red;
+}
