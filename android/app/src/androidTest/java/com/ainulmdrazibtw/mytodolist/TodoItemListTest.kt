@@ -4,8 +4,8 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import com.ainulmdrazibtw.mytodolist.repository.TodoItemRepositoryImpl
 import com.ainulmdrazibtw.mytodolist.view.TodoItemListViewModel
+import com.ainulmdrazibtw.mytodolist.view.TodoItemList
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -19,7 +19,7 @@ class TodoListTest {
 
     @Before
     fun setUp() {
-        composeTestRule.setContent { TodoList(testViewModel) }
+        composeTestRule.setContent { TodoItemList(testViewModel) }
         composeTestRule.waitForIdle()
     }
 
@@ -28,9 +28,12 @@ class TodoListTest {
 
     @Test
     fun shouldDisplayAllComponents() {
-        composeTestRule.onNodeWithText("My Todo List").assertIsDisplayed()
+        composeTestRule.onNodeWithTag(R.string.app_name.toString()).assertIsDisplayed()
         composeTestRule.onNodeWithTag(R.drawable.logo512.toString())
-            .assertIsDisplayed()    }
+            .assertIsDisplayed()
+
+        composeTestRule.onNodeWithTag(R.string.todo_list_title.toString()).assertIsDisplayed()
+    }
 
     @Test
     fun shouldDisplayAllItemsGivenMultipleTodos() {
@@ -38,4 +41,10 @@ class TodoListTest {
         composeTestRule.onNodeWithText("Test todo 2").assertIsDisplayed()
         composeTestRule.onNodeWithText("Test todo 3").assertIsDisplayed()
     }
+
+    @Test
+    fun shouldDisplaySuccessMessageNoTodos() {
+        composeTestRule.onNodeWithTag(R.string.app_name.toString()).assertIsDisplayed()
+    }
+
 }

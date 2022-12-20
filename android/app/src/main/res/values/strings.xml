@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Todo List</string>
+    <string name="todo_list_title">My Todos</string>
+    <string name="empty_list_message">No todos. Add a new todo!</string>
+
+    <string name="todo_form_title">Create new todo</string>
+    <string name="todo_form_button_title">Add</string>
 </resources>
