@@ -12,4 +12,8 @@ class TodoItemRepositoryImpl: TodoItemRepository {
             TodoItemDetails("Test todo 3",false, DEFAULT_USERNAME)
         )
     }
+
+    override fun addTodo(todoCreateTitle: String): TodoItemDetails {
+        return TodoItemDetails(title = todoCreateTitle, username = DEFAULT_USERNAME)
+    }
 }
