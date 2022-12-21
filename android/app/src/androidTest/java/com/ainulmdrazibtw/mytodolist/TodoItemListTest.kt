@@ -39,19 +39,4 @@ class TodoItemListTest {
         composeTestRule.onNodeWithTag(R.string.todo_list_title.toString()).assertIsDisplayed()
     }
 
-    @Test
-    fun shouldDisplayAllItemsGivenMultipleTodos() {
-        composeTestRule.onNodeWithText("Test todo 1").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Test todo 2").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Test todo 3").assertIsDisplayed()
-    }
-
-//    @Test
-//    fun shouldDisplaySuccessMessageNoTodos() {
-//        val mockTodoItemRepository = mock(TodoItemRepositoryImpl::class.java)
-//        `when`(mockTodoItemRepository.getAllTodos()).thenReturn(emptyList())
-//
-//        composeTestRule.onNodeWithTag(R.string.empty_list_message.toString()).assertIsDisplayed()
-//    }
-
 }
