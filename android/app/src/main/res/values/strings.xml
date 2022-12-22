@@ -6,4 +6,6 @@
     <string name="todo_form_title">Create new todo</string>
     <string name="todo_form_button_title">Add</string>
     <string name="todo_form_textfield">Title of todo</string>
+
+    <string name="todo_form_title_error">Please enter a title</string>
 </resources>

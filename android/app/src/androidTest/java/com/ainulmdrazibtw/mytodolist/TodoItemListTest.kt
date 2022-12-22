@@ -32,10 +32,6 @@ class TodoItemListTest {
 
     @Test
     fun shouldDisplayAllComponents() {
-        composeTestRule.onNodeWithTag(R.string.app_name.toString()).assertIsDisplayed()
-        composeTestRule.onNodeWithTag(R.drawable.logo512.toString())
-            .assertIsDisplayed()
-
         composeTestRule.onNodeWithTag(R.string.todo_list_title.toString()).assertIsDisplayed()
     }
 
