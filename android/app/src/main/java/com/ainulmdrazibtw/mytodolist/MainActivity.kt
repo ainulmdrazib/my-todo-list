@@ -6,16 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import com.ainulmdrazibtw.mytodolist.ui.theme.MyTodoListTheme
-import com.ainulmdrazibtw.mytodolist.view.TodoItemListViewModel
-import com.ainulmdrazibtw.mytodolist.view.TodoItemList
-import com.ainulmdrazibtw.mytodolist.view.TodoList
+import com.ainulmdrazibtw.mytodolist.view.MyTodoListHome
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +21,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background,
                     modifier = Modifier.fillMaxSize()
                 ) {
-TodoList()
+MyTodoListHome()
                 }
             }
         }

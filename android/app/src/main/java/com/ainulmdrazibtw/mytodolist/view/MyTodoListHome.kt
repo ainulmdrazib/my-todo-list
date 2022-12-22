@@ -10,15 +10,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun TodoList() {
+fun MyTodoListHome() {
 
-//        val todoFormViewModel by viewModels<TodoFormViewModel>()
     val todoItemListViewModel by remember { mutableStateOf(TodoItemListViewModel()) }
 
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
+        TodoAppHeader()
+        TodoForm(todoItemListViewModel)
         TodoItemList(todoItemListViewModel)
     }
 
