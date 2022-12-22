@@ -53,13 +53,4 @@ class TodoFormTest {
         composeTestRule.onNodeWithTag(R.string.todo_form_button_title.toString()).performClick()
         composeTestRule.onNodeWithText(titleError).assertExists()
     }
-
-//    @Test
-//    fun shouldDisplaySuccessMessageNoTodos() {
-//        val mockTodoItemRepository = mock(TodoItemRepositoryImpl::class.java)
-//        `when`(mockTodoItemRepository.getAllTodos()).thenReturn(emptyList())
-//
-//        composeTestRule.onNodeWithTag(R.string.empty_list_message.toString()).assertIsDisplayed()
-//    }
-
 }

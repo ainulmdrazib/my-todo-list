@@ -47,7 +47,7 @@ fun TodoForm(viewModel: TodoItemListViewModel) {
                     titleError = false
                     val todoToAdd: TodoItemDetails = TodoItemDetails(title = titleValue.text, username = viewModel.DEFAULT_USERNAME)
                     viewModel.addTodo(todoToAdd)
-                    println("TITLE VALID: " + todoToAdd.title)
+                    titleValue = TextFieldValue("")
                 } else {
                     titleError = true
                 }
